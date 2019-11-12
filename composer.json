@@ -1,0 +1,14 @@
+{
+    "name": "nemundo/todo",
+    "description": "To Do App",
+    "require": {
+        "nemundo/framework": "*"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "nemundo",
+            "email": "urs.lang@gmail.com"
+        }
+    ]
+}
