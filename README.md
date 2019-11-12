@@ -2,9 +2,14 @@
 
 To Do App for Nemundo Framework.
 
-### Installation
+### Composer Installation
 ```
 composer require nemundo/todo
+```
+
+### Submodule Installation
+```
+git submodule add https://github.com/nemundo/srf.git lib/srf
 ```
 
 ### Installation
