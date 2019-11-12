@@ -7,5 +7,10 @@
             "name": "nemundo",
             "email": "urs.lang@gmail.com"
         }
-    ]
+    ],
+    "autoload": {
+        "psr-4": {
+            "Nemundo\\ToDo\\": "src/"
+        }
+    }
 }
