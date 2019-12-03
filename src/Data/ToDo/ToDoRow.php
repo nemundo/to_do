@@ -36,6 +36,16 @@ public $userId;
 */
 public $user;
 
+/**
+* @var string
+*/
+public $workflowId;
+
+/**
+* @var \Nemundo\Process\Row\WorkflowCustomRow
+*/
+public $workflow;
+
 public function __construct(\Nemundo\Db\Row\AbstractDataRow $row, $model) {
 parent::__construct($row->getData());
 $this->row = $row;
@@ -46,8 +56,15 @@ $this->userId = $this->getModelValue($model->userId);
 if ($model->user !== null) {
 $this->loadNemundoUserDataUserUseruserRow($model->user);
 }
+$this->workflowId = $this->getModelValue($model->workflowId);
+if ($model->workflow !== null) {
+$this->loadNemundoProcessDataWorkflowWorkflowworkflowRow($model->workflow);
+}
 }
 private function loadNemundoUserDataUserUseruserRow($model) {
 $this->user = new \Nemundo\User\Data\User\UserRow($this->row, $model);
+}
+private function loadNemundoProcessDataWorkflowWorkflowworkflowRow($model) {
+$this->workflow = new \Nemundo\Process\Row\WorkflowCustomRow($this->row, $model);
 }
 }

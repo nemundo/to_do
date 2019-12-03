@@ -26,6 +26,16 @@ public $userId;
 */
 public $user;
 
+/**
+* @var \Nemundo\Model\Type\External\Id\ExternalIdType
+*/
+public $workflowId;
+
+/**
+* @var \Nemundo\Process\Data\Workflow\WorkflowExternalType
+*/
+public $workflow;
+
 protected function loadModel() {
 $this->tableName = "todo_to_do";
 $this->aliasTableName = "todo_to_do";
@@ -66,6 +76,13 @@ $this->userId->aliasFieldName = "todo_to_do_user";
 $this->userId->label = "User";
 $this->userId->allowNullValue = false;
 
+$this->workflowId = new \Nemundo\Model\Type\External\Id\ExternalIdType($this);
+$this->workflowId->tableName = "todo_to_do";
+$this->workflowId->fieldName = "workflow";
+$this->workflowId->aliasFieldName = "todo_to_do_workflow";
+$this->workflowId->label = "Workflow";
+$this->workflowId->allowNullValue = false;
+
 $index = new \Nemundo\Model\Definition\Index\ModelIndex($this);
 $index->indexName = "user";
 $index->addType($this->userId);
@@ -78,6 +95,16 @@ $this->user->tableName = "todo_to_do";
 $this->user->fieldName = "user";
 $this->user->aliasFieldName = "todo_to_do_user";
 $this->user->label = "User";
+}
+return $this;
+}
+public function loadWorkflow() {
+if ($this->workflow == null) {
+$this->workflow = new \Nemundo\Process\Data\Workflow\WorkflowExternalType($this, "todo_to_do_workflow");
+$this->workflow->tableName = "todo_to_do";
+$this->workflow->fieldName = "workflow";
+$this->workflow->aliasFieldName = "todo_to_do_workflow";
+$this->workflow->label = "Workflow";
 }
 return $this;
 }
