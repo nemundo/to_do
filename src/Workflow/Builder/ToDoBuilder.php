@@ -16,7 +16,7 @@ class ToDoBuilder extends AbstractWorkflowBuilder
 
     protected function loadWorkflow()
     {
-        $this->process=new ToDoProcess();
+        $this->process = new ToDoProcess();
         // TODO: Implement loadWorkflow() method.
     }
 
@@ -24,16 +24,19 @@ class ToDoBuilder extends AbstractWorkflowBuilder
     {
 
 
-       $workflowId= $this->saveWorkflow($this->toDo);
+        $this->subject = $this->toDo;
 
+        $this->assignment->setUserIdentification((new UserSession())->userId);
+
+        //$this->assignment->setUsergroupIdentification(())
+
+        $workflowId = $this->saveWorkflow();
 
         $data = new ToDo();
-        $data->workflowId=$workflowId;
+        $data->workflowId = $workflowId;
         $data->userId = (new UserSession())->userId;
         $data->toDo = $this->toDo;
-       $dataId=  $data->save();
-
-
+        $dataId = $data->save();
 
 
         // TODO: Implement createWorkflow() method.

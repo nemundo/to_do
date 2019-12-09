@@ -27,7 +27,7 @@ public $userId;
 public $user;
 
 /**
-* @var \Nemundo\Model\Type\External\Id\ExternalIdType
+* @var \Nemundo\Model\Type\External\Id\ExternalUniqueIdType
 */
 public $workflowId;
 
@@ -76,7 +76,7 @@ $this->userId->aliasFieldName = "todo_to_do_user";
 $this->userId->label = "User";
 $this->userId->allowNullValue = false;
 
-$this->workflowId = new \Nemundo\Model\Type\External\Id\ExternalIdType($this);
+$this->workflowId = new \Nemundo\Model\Type\External\Id\ExternalUniqueIdType($this);
 $this->workflowId->tableName = "todo_to_do";
 $this->workflowId->fieldName = "workflow";
 $this->workflowId->aliasFieldName = "todo_to_do_workflow";

@@ -26,7 +26,7 @@ class CommentForm extends AbstractStatusForm
     }
 
 
-    protected function onSubmit()
+    protected function onSave()
     {
         // TODO: Implement onSubmit() method.
 
