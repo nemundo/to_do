@@ -5,8 +5,7 @@ namespace Nemundo\ToDo\Script;
 
 
 use Nemundo\App\Script\Type\AbstractConsoleScript;
-use Nemundo\Process\Install\ProcessInstall;
-use Nemundo\ToDo\Install\ToDoInstall;
+use Nemundo\Core\Structure\ForLoop;
 use Nemundo\ToDo\Workflow\Builder\ToDoBuilder;
 
 class TestScript extends AbstractConsoleScript
@@ -14,22 +13,24 @@ class TestScript extends AbstractConsoleScript
 
     protected function loadScript()
     {
-   $this->scriptName='todo-test';
+        $this->scriptName = 'todo-test';
     }
 
 
     public function run()
     {
 
-        (new ProcessInstall())->install();
-       (new ToDoInstall())->install();
+        //(new ProcessInstall())->install();
+        //(new ToDoInstall())->install();
 
-
-        $builder = new ToDoBuilder();
-        $builder->toDo = 'hello';
-        $builder->createWorkflow();
-
-
+        $loop = new ForLoop();
+        $loop->minNumber = 1;
+        $loop->maxNumber = 10;
+        foreach ($loop->getData() as $number) {
+            $builder = new ToDoBuilder();
+            $builder->toDo = 'hello ' . $number;
+            $builder->createWorkflow();
+        }
 
 
         // TODO: Implement run() method.

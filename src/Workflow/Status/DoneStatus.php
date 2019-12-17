@@ -10,7 +10,7 @@ use Nemundo\Process\Status\AbstractStatus;
 class DoneStatus extends AbstractStatus
 {
 
-    protected function loadStatus()
+    protected function loadContentType()
     {
         $this->label = 'Done';
         $this->id = '6794c336-a173-4dbb-8f1c-2a1cbfd80eff';

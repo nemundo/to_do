@@ -4,23 +4,23 @@
 namespace Nemundo\ToDo\Workflow\Builder;
 
 
-use Nemundo\Process\Builder\AbstractWorkflowBuilder;
+use Nemundo\Process\Item\AbstractWorkflowItem;
 use Nemundo\ToDo\Data\ToDo\ToDo;
 use Nemundo\ToDo\Workflow\Process\ToDoProcess;
 use Nemundo\User\Session\UserSession;
 
-class ToDoBuilder extends AbstractWorkflowBuilder
+class ToDoBuilder extends AbstractWorkflowItem  // AbstractWorkflowBuilder
 {
 
     public $toDo;
 
     protected function loadWorkflow()
     {
-        $this->process = new ToDoProcess();
+        $this->contentType = new ToDoProcess();
         // TODO: Implement loadWorkflow() method.
     }
 
-    public function createWorkflow()
+    public function saveItem()
     {
 
 
@@ -28,15 +28,16 @@ class ToDoBuilder extends AbstractWorkflowBuilder
 
         $this->assignment->setUserIdentification((new UserSession())->userId);
 
+
         //$this->assignment->setUsergroupIdentification(())
 
-        $workflowId = $this->saveWorkflow();
+        $this->saveWorkflow();
 
         $data = new ToDo();
-        $data->workflowId = $workflowId;
+        $data->workflowId = $this->dataId;  // workflowId;
         $data->userId = (new UserSession())->userId;
         $data->toDo = $this->toDo;
-        $dataId = $data->save();
+        $data->save();
 
 
         // TODO: Implement createWorkflow() method.
