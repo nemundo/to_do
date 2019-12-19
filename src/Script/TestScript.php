@@ -29,7 +29,7 @@ class TestScript extends AbstractConsoleScript
         foreach ($loop->getData() as $number) {
             $builder = new ToDoBuilder();
             $builder->toDo = 'hello ' . $number;
-            $builder->createWorkflow();
+            $builder->saveItem();
         }
 
 

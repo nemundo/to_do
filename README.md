@@ -9,7 +9,13 @@ composer require nemundo/todo
 
 ### Submodule Installation
 ```
-git submodule add https://github.com/nemundo/srf.git lib/srf
+git submodule add https://github.com/nemundo/to_do.git lib/todo
+```
+
+```
+$lib = new Library($autoload);
+$lib->source = __DIR__ . '/lib/todo/src/';
+$lib->namespace = 'Nemundo\\ToDo';
 ```
 
 ### Installation

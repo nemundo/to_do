@@ -24,6 +24,10 @@ class ToDoTable extends AdminTable
     {
 
         $toDoReader = new ToDoReader();
+        $toDoReader->model->loadWorkflow();
+        $toDoReader->model->workflow->loadProcess();
+        $toDoReader->model->workflow->process->loadContentType();
+
         $toDoReader->filter->andEqual($toDoReader->model->userId, (new UserSession())->userId);
 
         if (!$this->showDoneItem) {
@@ -35,6 +39,11 @@ class ToDoTable extends AdminTable
 
             $row = new TableRow($this);
 
+            //$row->addText($toDoRow->workflow->getSubject());
+
+            $row->addSite($toDoRow->workflow->getViewSite());
+
+
             if ($toDoRow->done) {
                 $strike = new Strike($row);
                 $strike->content = $toDoRow->toDo;
@@ -42,7 +51,6 @@ class ToDoTable extends AdminTable
                 $row->addEmpty();
 
             } else {
-                $row->addText($toDoRow->toDo);
 
                 $site = clone(DoneSite::$site);
                 $site->addParameter(new ToDoParameter($toDoRow->id));

@@ -32,7 +32,7 @@ public $user;
 public $workflowId;
 
 /**
-* @var \Nemundo\Process\Data\Workflow\WorkflowExternalType
+* @var \Nemundo\Process\Workflow\Data\Workflow\WorkflowExternalType
 */
 public $workflow;
 
@@ -100,7 +100,7 @@ return $this;
 }
 public function loadWorkflow() {
 if ($this->workflow == null) {
-$this->workflow = new \Nemundo\Process\Data\Workflow\WorkflowExternalType($this, "todo_to_do_workflow");
+$this->workflow = new \Nemundo\Process\Workflow\Data\Workflow\WorkflowExternalType($this, "todo_to_do_workflow");
 $this->workflow->tableName = "todo_to_do";
 $this->workflow->fieldName = "workflow";
 $this->workflow->aliasFieldName = "todo_to_do_workflow";

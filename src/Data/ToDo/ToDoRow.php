@@ -42,7 +42,7 @@ public $user;
 public $workflowId;
 
 /**
-* @var \Nemundo\Process\Row\WorkflowCustomRow
+* @var \Nemundo\Process\Workflow\Row\WorkflowCustomRow
 */
 public $workflow;
 
@@ -58,13 +58,13 @@ $this->loadNemundoUserDataUserUseruserRow($model->user);
 }
 $this->workflowId = $this->getModelValue($model->workflowId);
 if ($model->workflow !== null) {
-$this->loadNemundoProcessDataWorkflowWorkflowworkflowRow($model->workflow);
+$this->loadNemundoProcessWorkflowDataWorkflowWorkflowworkflowRow($model->workflow);
 }
 }
 private function loadNemundoUserDataUserUseruserRow($model) {
 $this->user = new \Nemundo\User\Data\User\UserRow($this->row, $model);
 }
-private function loadNemundoProcessDataWorkflowWorkflowworkflowRow($model) {
-$this->workflow = new \Nemundo\Process\Row\WorkflowCustomRow($this->row, $model);
+private function loadNemundoProcessWorkflowDataWorkflowWorkflowworkflowRow($model) {
+$this->workflow = new \Nemundo\Process\Workflow\Row\WorkflowCustomRow($this->row, $model);
 }
 }
