@@ -11,6 +11,7 @@ use Nemundo\Process\Template\Status\DocumentProcessStatus;
 use Nemundo\Process\Template\Status\UserAssignmentProcessStatus;
 use Nemundo\Process\Workflow\Content\Status\AbstractProcessStatus;
 use Nemundo\ToDo\Workflow\Form\ToDoForm;
+use Nemundo\ToDo\Workflow\Process\ToDoProcess;
 
 class CreateProcessStatus extends AbstractProcessStatus
 {
@@ -30,6 +31,7 @@ class CreateProcessStatus extends AbstractProcessStatus
         $this->addMenuStatusClass(UserAssignmentProcessStatus::class);
         $this->addMenuStatusClass(DeadlineChangeProcessStatus::class);
         $this->addMenuStatusClass(CancelStatus::class);
+        $this->addMenuStatusClass(ToDoProcess::class);
 
     }
 
