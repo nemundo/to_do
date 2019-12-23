@@ -12,6 +12,7 @@ class ToDoAddContentType extends AbstractContentType
 
     protected function loadContentType()
     {
+        $this->type='Add Existing To Do';
    $this->id='5ee48631-96a0-473a-9c66-b9dad8e4ba99';
    $this->formClass=ToDoAddContentForm::class;
     }

@@ -9,7 +9,6 @@ use Nemundo\Process\Content\Form\AbstractContentForm;
 use Nemundo\Process\Content\Item\ContentItem;
 use Nemundo\ToDo\Data\ToDo\ToDoReader;
 use Nemundo\ToDo\Workflow\Process\ToDoProcess;
-use Nemundo\ToDo\Workflow\Type\ToDoAddContentType;
 
 class ToDoAddContentForm extends AbstractContentForm
 {
@@ -21,7 +20,7 @@ class ToDoAddContentForm extends AbstractContentForm
 
     public function getContent()
     {
-        $this->todo=new BootstrapListBox($this);
+        $this->todo = new BootstrapListBox($this);
 
         $reader = new ToDoReader();
         $reader->model->loadWorkflow();
@@ -38,10 +37,10 @@ class ToDoAddContentForm extends AbstractContentForm
 
 
         $item = new ContentItem();
-        $item->contentType=new ToDoProcess();  // ToDoAddContentType();
-$item->parentId=$this->parentId;
-$item->dataId=$this->todo->getValue();
-$item->saveItem();
+        $item->contentType = new ToDoProcess();  // ToDoAddContentType();
+        $item->parentId = $this->parentId;
+        $item->dataId = $this->todo->getValue();
+        $item->saveItem();
 
         // TODO: Implement onSubmit() method.
     }

@@ -17,8 +17,10 @@ class ToDoSite extends AbstractSite
 
     protected function loadSite()
     {
+
+        $this->title='To Do';
         $this->url = 'todo';
-        $this->menuActive = false;
+        //$this->menuActive = false;
 
         ToDoSite::$site = $this;
 

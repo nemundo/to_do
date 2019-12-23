@@ -28,20 +28,26 @@ class ToDoTable extends AdminTable
         $toDoReader->model->workflow->loadProcess();
         $toDoReader->model->workflow->process->loadContentType();
 
+        /*
         $toDoReader->filter->andEqual($toDoReader->model->userId, (new UserSession())->userId);
 
         if (!$this->showDoneItem) {
             $toDoReader->filter->andEqual($toDoReader->model->done, false);
         }
         $toDoReader->addOrder($toDoReader->model->done);
-        $toDoReader->addOrder($toDoReader->model->toDo);
+        $toDoReader->addOrder($toDoReader->model->toDo);*/
+
         foreach ($toDoReader->getData() as $toDoRow) {
 
             $row = new TableRow($this);
 
-            //$row->addText($toDoRow->workflow->getSubject());
+            $row->addText($toDoRow->workflow->subject);
 
-            $row->addSite($toDoRow->workflow->getViewSite());
+
+
+            $row->addText($toDoRow->workflow->getSubject());
+
+            //$row->addSite($toDoRow->workflow->getViewSite());
 
 
             if ($toDoRow->done) {

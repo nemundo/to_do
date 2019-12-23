@@ -29,7 +29,7 @@ class ToDoBuilder extends AbstractWorkflowItem
 
         //$this->assignment->setUserIdentification((new UserSession())->userId);
         //$this->assignment->setUsergroupIdentification(())
-        $this->saveWorkflow();
+
 
 
 
@@ -40,7 +40,7 @@ class ToDoBuilder extends AbstractWorkflowItem
         $data->toDo = $this->toDo;
         $data->save();
 
-
+        $this->saveWorkflow();
         
 /*
         $item = new UserAssignmentItem();
