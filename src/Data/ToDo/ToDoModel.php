@@ -41,7 +41,7 @@ $this->tableName = "todo_to_do";
 $this->aliasTableName = "todo_to_do";
 $this->label = "To Do";
 
-$this->primaryIndex = new \Nemundo\Db\Index\AutoIncrementIdPrimaryIndex();
+$this->primaryIndex = new \Nemundo\Db\Index\TextIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "todo_to_do";

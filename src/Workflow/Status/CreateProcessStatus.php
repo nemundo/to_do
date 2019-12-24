@@ -4,6 +4,7 @@
 namespace Nemundo\ToDo\Workflow\Status;
 
 
+use Nemundo\Process\Group\Content\Add\AddGroupContentType;
 use Nemundo\Process\Template\Status\CancelStatus;
 use Nemundo\Process\Template\Status\CommentProcessStatus;
 use Nemundo\Process\Template\Status\DeadlineChangeProcessStatus;
@@ -32,6 +33,7 @@ class CreateProcessStatus extends AbstractProcessStatus
         $this->addMenuStatusClass(DeadlineChangeProcessStatus::class);
         $this->addMenuStatusClass(CancelStatus::class);
         $this->addMenuStatusClass(ToDoProcess::class);
+        $this->addMenuStatusClass(AddGroupContentType::class);
 
     }
 

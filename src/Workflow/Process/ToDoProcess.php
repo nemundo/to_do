@@ -6,6 +6,7 @@ namespace Nemundo\ToDo\Workflow\Process;
 
 use Nemundo\Process\Workflow\Content\Process\AbstractProcess;
 use Nemundo\Process\Workflow\Content\Status\ProcessStatusTrait;
+use Nemundo\ToDo\Content\ToDoContentList;
 use Nemundo\ToDo\Workflow\Status\CreateProcessStatus;
 use Nemundo\ToDo\Workflow\View\ToDoView;
 
@@ -24,6 +25,7 @@ class ToDoProcess extends AbstractProcess
         $this->startNumber = 200;
         $this->startStatus = new CreateProcessStatus();
         $this->viewClass = ToDoView::class;
+        $this->listClass=ToDoContentList::class;
 
 
     }

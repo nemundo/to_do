@@ -30,17 +30,20 @@ class ToDoBuilder extends AbstractWorkflowItem
         //$this->assignment->setUserIdentification((new UserSession())->userId);
         //$this->assignment->setUsergroupIdentification(())
 
-
-
+        $this->saveWorkflow();
 
         $data = new ToDo();
+        $data->id = $this->dataId;
         $data->updateOnDuplicate=true;
+        $data->toDo = $this->toDo;
         $data->workflowId = $this->dataId;
         $data->userId = (new UserSession())->userId;
-        $data->toDo = $this->toDo;
         $data->save();
 
-        $this->saveWorkflow();
+
+
+
+
         
 /*
         $item = new UserAssignmentItem();

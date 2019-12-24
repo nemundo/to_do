@@ -9,6 +9,11 @@ protected $model;
 /**
 * @var string
 */
+public $id;
+
+/**
+* @var string
+*/
 public $toDo;
 
 /**
@@ -31,6 +36,8 @@ parent::__construct();
 $this->model = new ToDoModel();
 }
 public function save() {
+$id = $this->id;
+$this->typeValueList->setModelValue($this->model->id, $id);
 $this->typeValueList->setModelValue($this->model->toDo, $this->toDo);
 $this->typeValueList->setModelValue($this->model->done, $this->done);
 $this->typeValueList->setModelValue($this->model->userId, $this->userId);
