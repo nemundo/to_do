@@ -13,6 +13,7 @@ use Nemundo\Db\Sql\Join\SqlJoinType;
 use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
 use Nemundo\Html\Block\Hr;
 use Nemundo\Model\Join\ModelJoin;
+use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
 use Nemundo\Process\Content\Data\ContentGroup\ContentGroupModel;
 use Nemundo\Process\Content\Data\ContentGroup\ContentGroupReader;
 use Nemundo\Process\Group\Data\GroupUser\GroupUserModel;
@@ -67,12 +68,14 @@ class ToDoSite extends AbstractSite
 
         $reader = new ToDoReader();
         $reader->model->loadWorkflow();
+        $reader->model->workflow->loadProcess();
 
         /*$field = new Field($reader);
         $field->fieldName = 'DISTINCT id';
         $field->aliasFieldName = 'distinct_id';*/
 
-       new DistinctField($reader);
+      $field= new DistinctField($reader);
+      $field->tableName = $reader->model->tableName;
 
 
         //$reader->addField()
@@ -99,12 +102,15 @@ class ToDoSite extends AbstractSite
 //        $reader->filter->andEqual($contentGroupModel->groupId,'780a0094-b408-45ca-801a-4871e3b31fc2');
         $reader->filter->andEqual($groupUserModel->userId, (new UserSessionType())->userId);
 
+        $reader->addOrder($reader->model->workflow->number);
 
         foreach ($reader->getData() as $toDoRow) {
 
-            $row=new TableRow($table);
+            $row=new BootstrapClickableTableRow($table);
             $row->addText($toDoRow->workflow->workflowNumber);
             $row->addText($toDoRow->toDo);
+
+          //  $row->addClickableSite($toDoRow->workflow->getViewSite());
 
         }
 

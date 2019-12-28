@@ -26,7 +26,7 @@ class ToDoTable extends AdminTable
         $toDoReader = new ToDoReader();
         $toDoReader->model->loadWorkflow();
         $toDoReader->model->workflow->loadProcess();
-        $toDoReader->model->workflow->process->loadContentType();
+        //$toDoReader->model->workflow->process->loadContentType();
 
         /*
         $toDoReader->filter->andEqual($toDoReader->model->userId, (new UserSession())->userId);
@@ -40,15 +40,10 @@ class ToDoTable extends AdminTable
         foreach ($toDoReader->getData() as $toDoRow) {
 
             $row = new TableRow($this);
-
             $row->addText($toDoRow->workflow->subject);
-
-
-
             $row->addText($toDoRow->workflow->getSubject());
 
             //$row->addSite($toDoRow->workflow->getViewSite());
-
 
             if ($toDoRow->done) {
                 $strike = new Strike($row);
