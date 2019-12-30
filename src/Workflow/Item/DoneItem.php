@@ -11,18 +11,17 @@ use Nemundo\ToDo\Workflow\Status\DoneProcessStatus;
 class DoneItem extends AbstractStatusItem
 {
 
-    public function saveItem()
+    public function saveData()
     {
-        $this->contentType = new DoneProcessStatus();
 
         $this->contentType = new DoneProcessStatus();
 
         $update = new ToDoUpdate();
         $update->done=true;
-        $update->filter->andEqual($update->model->workflowId, $this->parentId);
-        $update->update();
+        //$update->filter->andEqual($update->model->workflowId, $this->parentId);
+        $update->updateById($this->parentId);
 
-        $this->saveWorkflowLog();
+        //$this->saveWorkflowLog();
         // TODO: Implement saveItem() method.
     }
 

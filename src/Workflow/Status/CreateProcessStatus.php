@@ -25,15 +25,15 @@ class CreateProcessStatus extends AbstractProcessStatus
         $this->formClass = ToDoForm::class;
         $this->editable = false;
 
-        $this->nextStatusClass = DoneProcessStatus::class;
+        $this->nextMenuClass = DoneProcessStatus::class;
 
-        $this->addMenuStatusClass(CommentProcessStatus::class);
-        $this->addMenuStatusClass(DocumentProcessStatus::class);
-        $this->addMenuStatusClass(UserAssignmentProcessStatus::class);
-        $this->addMenuStatusClass(DeadlineChangeProcessStatus::class);
-        $this->addMenuStatusClass(CancelStatus::class);
-        $this->addMenuStatusClass(ToDoProcess::class);
-        $this->addMenuStatusClass(AddGroupContentType::class);
+        $this->addMenuClass(CommentProcessStatus::class);
+        $this->addMenuClass(DocumentProcessStatus::class);
+        $this->addMenuClass(UserAssignmentProcessStatus::class);
+        $this->addMenuClass(DeadlineChangeProcessStatus::class);
+        $this->addMenuClass(CancelStatus::class);
+        $this->addMenuClass(ToDoProcess::class);
+        $this->addMenuClass(AddGroupContentType::class);
 
     }
 

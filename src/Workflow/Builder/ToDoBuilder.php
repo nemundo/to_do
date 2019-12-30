@@ -34,7 +34,7 @@ class ToDoBuilder extends AbstractWorkflowItem
         $data->id = $this->dataId;
         $data->updateOnDuplicate = true;
         $data->toDo = $this->toDo;
-        $data->workflowId = $this->dataId;
+        //$data->workflowId = $this->dataId;
         $data->userId = (new UserSession())->userId;
         $data->save();
 

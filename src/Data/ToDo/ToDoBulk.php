@@ -26,11 +26,6 @@ public $done;
 */
 public $userId;
 
-/**
-* @var string
-*/
-public $workflowId;
-
 public function __construct() {
 parent::__construct();
 $this->model = new ToDoModel();
@@ -41,7 +36,6 @@ $this->typeValueList->setModelValue($this->model->id, $id);
 $this->typeValueList->setModelValue($this->model->toDo, $this->toDo);
 $this->typeValueList->setModelValue($this->model->done, $this->done);
 $this->typeValueList->setModelValue($this->model->userId, $this->userId);
-$this->typeValueList->setModelValue($this->model->workflowId, $this->workflowId);
 $id = parent::save();
 return $id;
 }

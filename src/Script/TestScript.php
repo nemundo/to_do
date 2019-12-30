@@ -6,6 +6,10 @@ namespace Nemundo\ToDo\Script;
 
 use Nemundo\App\Script\Type\AbstractConsoleScript;
 use Nemundo\Core\Structure\ForLoop;
+use Nemundo\ToDo\Data\ToDo\ToDo;
+use Nemundo\ToDo\Data\ToDo\ToDoModel;
+use Nemundo\ToDo\Install\ToDoInstall;
+use Nemundo\ToDo\Install\ToDoUninstall;
 use Nemundo\ToDo\Workflow\Builder\ToDoBuilder;
 
 class TestScript extends AbstractConsoleScript
@@ -21,7 +25,14 @@ class TestScript extends AbstractConsoleScript
     {
 
         //(new ProcessInstall())->install();
-        //(new ToDoInstall())->install();
+
+        (new ToDoUninstall())->uninstall();
+        (new ToDoInstall())->install();
+
+
+        //$model=new ToDoModel();
+        //$model->workflowId
+
 
         $loop = new ForLoop();
         $loop->minNumber = 1;

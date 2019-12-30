@@ -6,6 +6,18 @@
     "model": [
         {
             "template": "default",
+            "model_id": "57b4d620-f4c2-4269-a277-403dfca94d81",
+            "label": "Bla",
+            "class_name": "Bla",
+            "table_name": "todo_bla",
+            "namespace": "Nemundo\\ToDo\\Data\\Bla",
+            "row_class_name": "",
+            "primary_index": "auto_increment",
+            "is_deleted": true,
+            "index": []
+        },
+        {
+            "template": "default",
             "model_id": "94112762-3eea-44fc-80c6-9130ea4079fb",
             "label": "Comment",
             "class_name": "Comment",
@@ -31,7 +43,7 @@
             "model_id": "3721d165-4d11-4d41-a8c1-407cc22aaa77",
             "label": "To Do",
             "class_name": "ToDo",
-            "table_name": "todo_to_do",
+            "table_name": "todo_todo",
             "namespace": "Nemundo\\ToDo\\Data\\ToDo",
             "row_class_name": "",
             "primary_index": "text_id",
@@ -68,8 +80,48 @@
                     "field_name": "workflow",
                     "variable_name": "workflow",
                     "allow_null": false,
-                    "is_deleted": false,
+                    "is_deleted": true,
                     "external_model_id": "d9483884-4d0f-4f64-9e98-c558e0159cfe"
+                },
+                {
+                    "type": "virtual_external",
+                    "label": "workflow2",
+                    "field_name": "workflow2",
+                    "variable_name": "workflow2",
+                    "allow_null": false,
+                    "is_deleted": true,
+                    "external_model_id": null,
+                    "external_field_name": null
+                },
+                {
+                    "type": "virtual_external",
+                    "label": "Workflow3",
+                    "field_name": "workflow3",
+                    "variable_name": "workflow3",
+                    "allow_null": false,
+                    "is_deleted": true,
+                    "external_model_id": null,
+                    "external_field_name": null
+                },
+                {
+                    "type": "virtual_external",
+                    "label": "asdf",
+                    "field_name": "asdf",
+                    "variable_name": "asdf",
+                    "allow_null": false,
+                    "is_deleted": true,
+                    "external_model_id": null,
+                    "external_field_name": null
+                },
+                {
+                    "type": "virtual_external",
+                    "label": "Workflow",
+                    "field_name": "workflow",
+                    "variable_name": "workflow",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "d9483884-4d0f-4f64-9e98-c558e0159cfe",
+                    "external_field_name": "id"
                 }
             ],
             "index": [

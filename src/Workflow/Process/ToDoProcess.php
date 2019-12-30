@@ -4,6 +4,7 @@
 namespace Nemundo\ToDo\Workflow\Process;
 
 
+use Nemundo\Process\Workflow\Content\Item\Process\WorkflowItem;
 use Nemundo\Process\Workflow\Content\Process\AbstractProcess;
 use Nemundo\Process\Workflow\Content\Status\ProcessStatusTrait;
 use Nemundo\ToDo\Content\ToDoContentList;
@@ -15,7 +16,7 @@ class ToDoProcess extends AbstractProcess
 
     use ProcessStatusTrait;
 
-    protected function loadProcess()
+    protected function loadContentType()
     {
 
         $this->type = 'To Do (Aufgabe)';
@@ -23,9 +24,10 @@ class ToDoProcess extends AbstractProcess
         $this->id = '6925df2d-ee59-49d4-aa8b-c03e0900f589';
         $this->prefixNumber = 'TODO-';
         $this->startNumber = 200;
-        $this->startStatus = new CreateProcessStatus();
+        $this->startContentType = new CreateProcessStatus();
         $this->viewClass = ToDoView::class;
         $this->listClass=ToDoContentList::class;
+        $this->itemClass=WorkflowItem::class;
 
 
     }

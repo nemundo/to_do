@@ -37,11 +37,6 @@ public $userId;
 public $user;
 
 /**
-* @var string
-*/
-public $workflowId;
-
-/**
 * @var \Nemundo\Process\Workflow\Row\WorkflowCustomRow
 */
 public $workflow;
@@ -56,7 +51,6 @@ $this->userId = $this->getModelValue($model->userId);
 if ($model->user !== null) {
 $this->loadNemundoUserDataUserUseruserRow($model->user);
 }
-$this->workflowId = $this->getModelValue($model->workflowId);
 if ($model->workflow !== null) {
 $this->loadNemundoProcessWorkflowDataWorkflowWorkflowworkflowRow($model->workflow);
 }
