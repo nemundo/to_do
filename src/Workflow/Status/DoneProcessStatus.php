@@ -13,7 +13,7 @@ class DoneProcessStatus extends AbstractProcessStatus
     protected function loadContentType()
     {
         $this->type = 'Done';
-        $this->id = '6794c336-a173-4dbb-8f1c-2a1cbfd80eff';
+        $this->contentId = '6794c336-a173-4dbb-8f1c-2a1cbfd80eff';
         $this->formClass= StatusForm::class;
         $this->closeWorkflow=true;
         $this->changeStatus=true;
