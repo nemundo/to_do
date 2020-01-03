@@ -25,8 +25,8 @@ class ToDoWidget extends AbstractAdminWidget
     {
 
         $form = new ToDoForm($this);
-        $form->redirectSite = WorkflowItemSite::$site;
-        $form->appendParameter = true;
+        //$form->redirectSite = WorkflowItemSite::$site;
+        $form->appendParameter =false;
 
         $table = new ToDoTable($this);
         $table->showDoneItem = false;

@@ -72,7 +72,7 @@
                     "field_name": "user",
                     "variable_name": "user",
                     "allow_null": false,
-                    "is_deleted": false
+                    "is_deleted": true
                 },
                 {
                     "type": "external",
@@ -116,7 +116,7 @@
                 {
                     "type": "virtual_external",
                     "label": "Workflow",
-                    "field_name": "workflow",
+                    "field_name": "id",
                     "variable_name": "workflow",
                     "allow_null": false,
                     "is_deleted": false,
@@ -124,15 +124,7 @@
                     "external_field_name": "id"
                 }
             ],
-            "index": [
-                {
-                    "index_name": "user",
-                    "index_type": "index",
-                    "field_name": [
-                        "user"
-                    ]
-                }
-            ]
+            "index": []
         }
     ]
 }

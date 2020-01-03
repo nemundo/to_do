@@ -20,12 +20,13 @@ class CreateProcessStatus extends AbstractProcessStatus
     protected function loadContentType()
     {
 
-        $this->type = 'Erstellung';
+        $this->contentLabel = 'Erstellung';
         $this->contentId = 'a31aa6fa-8905-4d21-bb80-c142c337eb0a';
         $this->formClass = ToDoForm::class;
         $this->editable = false;
 
         $this->nextMenuClass = DoneProcessStatus::class;
+
 
         $this->addMenuClass(CommentProcessStatus::class);
         $this->addMenuClass(DocumentProcessStatus::class);

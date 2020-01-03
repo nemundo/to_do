@@ -4,13 +4,10 @@
 namespace Nemundo\ToDo\Workflow\Form;
 
 
-use Nemundo\Core\Debug\Debug;
-use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
 use Nemundo\Process\Workflow\Content\Form\AbstractStatusForm;
 use Nemundo\Process\Workflow\Parameter\WorkflowParameter;
-use Nemundo\ToDo\Data\ToDo\ToDoReader;
-use Nemundo\ToDo\Workflow\Builder\ToDoBuilder;
+use Nemundo\ToDo\Workflow\Process\ToDoProcess;
 
 class ToDoForm extends AbstractStatusForm
 {
@@ -30,17 +27,17 @@ class ToDoForm extends AbstractStatusForm
 
         //(new Debug())->write($this->parentId);
 
-/*
-        $p = new Paragraph($this);
-        $p->content = 'parentid'.$this->parentId;
+        /*
+                $p = new Paragraph($this);
+                $p->content = 'parentid'.$this->parentId;
 
-        $p = new Paragraph($this);
-        $p->content = 'dataid'.$this->dataId;
+                $p = new Paragraph($this);
+                $p->content = 'dataid'.$this->dataId;
 
 
-        if ($this->parentId !==null) {
-            $this->loadUpdateForm();
-        }*/
+                if ($this->parentId !==null) {
+                    $this->loadUpdateForm();
+                }*/
 
         return parent::getContent();
 
@@ -51,12 +48,15 @@ class ToDoForm extends AbstractStatusForm
     {
 
 
+        /*
         $reader = new ToDoReader();
         $reader->model->loadWorkflow();
         $reader->filter->andEqual($reader->model->workflowId, $this->parentId);
         $todoRow = $reader->getRow();
 
         $this->todo->value = $todoRow->workflow->subject;  // - >workflow->subject;
+*/
+
 
     }
 
@@ -64,17 +64,21 @@ class ToDoForm extends AbstractStatusForm
     protected function onSubmit()
     {
 
+        /*
         $builder = new ToDoBuilder();
         $builder->parentId = $this->parentId;
         $builder->toDo = $this->todo->getValue();
-        $builder->saveItem();
+        $builder->saveItem();*/
+
+        $process = new ToDoProcess();
+        $process->parentId = $this->parentId;
+        $process->toDo = $this->todo->getValue();
+        $process->saveType();
 
         if ($this->appendParameter) {
-            $this->redirectSite->addParameter(new WorkflowParameter($builder->dataId));
+            $this->redirectSite->addParameter(new WorkflowParameter($process->dataId));
         }
 
-
     }
-
 
 }

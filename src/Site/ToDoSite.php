@@ -109,6 +109,7 @@ class ToDoSite extends AbstractSite
             $row=new BootstrapClickableTableRow($table);
             $row->addText($toDoRow->workflow->workflowNumber);
             $row->addText($toDoRow->toDo);
+            $row->addYesNo($toDoRow->done);
 
           //  $row->addClickableSite($toDoRow->workflow->getViewSite());
 

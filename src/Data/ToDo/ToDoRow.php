@@ -27,16 +27,6 @@ public $toDo;
 public $done;
 
 /**
-* @var string
-*/
-public $userId;
-
-/**
-* @var \Nemundo\User\Data\User\UserRow
-*/
-public $user;
-
-/**
 * @var \Nemundo\Process\Workflow\Row\WorkflowCustomRow
 */
 public $workflow;
@@ -47,16 +37,9 @@ $this->row = $row;
 $this->id = $this->getModelValue($model->id);
 $this->toDo = $this->getModelValue($model->toDo);
 $this->done = boolval($this->getModelValue($model->done));
-$this->userId = $this->getModelValue($model->userId);
-if ($model->user !== null) {
-$this->loadNemundoUserDataUserUseruserRow($model->user);
-}
 if ($model->workflow !== null) {
 $this->loadNemundoProcessWorkflowDataWorkflowWorkflowworkflowRow($model->workflow);
 }
-}
-private function loadNemundoUserDataUserUseruserRow($model) {
-$this->user = new \Nemundo\User\Data\User\UserRow($this->row, $model);
 }
 private function loadNemundoProcessWorkflowDataWorkflowWorkflowworkflowRow($model) {
 $this->workflow = new \Nemundo\Process\Workflow\Row\WorkflowCustomRow($this->row, $model);
