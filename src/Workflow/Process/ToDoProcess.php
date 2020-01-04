@@ -47,9 +47,9 @@ class ToDoProcess extends AbstractProcess
     protected function saveData()
     {
 
-        $this->subject = $this->toDo;
+        $this->workflowSubject = $this->toDo;
 
-        //$this->assignment->setUserIdentification((new UserSession())->userId);
+        $this->assignment->setUserIdentification((new UserSession())->userId);
         //$this->assignment->setUsergroupIdentification(())
 
         //$this->saveWorkflow();
