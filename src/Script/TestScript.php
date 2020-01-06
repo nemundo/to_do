@@ -6,11 +6,9 @@ namespace Nemundo\ToDo\Script;
 
 use Nemundo\App\Script\Type\AbstractConsoleScript;
 use Nemundo\Core\Structure\ForLoop;
-use Nemundo\ToDo\Data\ToDo\ToDo;
-use Nemundo\ToDo\Data\ToDo\ToDoModel;
 use Nemundo\ToDo\Install\ToDoInstall;
 use Nemundo\ToDo\Install\ToDoUninstall;
-use Nemundo\ToDo\Workflow\Builder\ToDoBuilder;
+use Nemundo\ToDo\Workflow\Process\ToDoProcess;
 
 class TestScript extends AbstractConsoleScript
 {
@@ -24,12 +22,10 @@ class TestScript extends AbstractConsoleScript
     public function run()
     {
 
+
         //(new ProcessInstall())->install();
-
-        (new ToDoUninstall())->uninstall();
-        (new ToDoInstall())->install();
-
-
+        //(new ToDoUninstall())->uninstall();
+        //(new ToDoInstall())->install();
         //$model=new ToDoModel();
         //$model->workflowId
 
@@ -38,13 +34,11 @@ class TestScript extends AbstractConsoleScript
         $loop->minNumber = 1;
         $loop->maxNumber = 10;
         foreach ($loop->getData() as $number) {
-            $builder = new ToDoBuilder();
-            $builder->toDo = 'hello ' . $number;
-            $builder->saveItem();
+            $process = new ToDoProcess();
+            $process->toDo = 'hello ' . $number;
+            $process->saveType();
         }
 
-
-        // TODO: Implement run() method.
     }
 
 }

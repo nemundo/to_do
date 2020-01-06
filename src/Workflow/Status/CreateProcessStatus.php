@@ -5,13 +5,15 @@ namespace Nemundo\ToDo\Workflow\Status;
 
 
 use Nemundo\Process\Group\Content\Add\AddGroupContentType;
+use Nemundo\Process\Template\Content\Html\HtmlContentType;
 use Nemundo\Process\Template\Status\CancelStatus;
 use Nemundo\Process\Template\Status\CommentProcessStatus;
 use Nemundo\Process\Template\Status\DeadlineChangeProcessStatus;
 use Nemundo\Process\Template\Status\DocumentProcessStatus;
 use Nemundo\Process\Template\Status\UserAssignmentProcessStatus;
 use Nemundo\Process\Workflow\Content\Status\AbstractProcessStatus;
-use Nemundo\ToDo\Workflow\Form\ToDoForm;
+use Nemundo\ToDo\Workflow\Form\ToDoEditForm;
+use Nemundo\ToDo\Workflow\Form\ToDoProcessForm;
 use Nemundo\ToDo\Workflow\Process\ToDoProcess;
 
 class CreateProcessStatus extends AbstractProcessStatus
@@ -20,10 +22,10 @@ class CreateProcessStatus extends AbstractProcessStatus
     protected function loadContentType()
     {
 
-        $this->contentLabel = 'Erstellung';
+        $this->contentLabel = 'Erstellung (ToDo)';
         $this->contentId = 'a31aa6fa-8905-4d21-bb80-c142c337eb0a';
-        $this->formClass = ToDoForm::class;
-        $this->editable = false;
+        $this->formClass = ToDoEditForm::class;
+        $this->editable = true;
 
         $this->nextMenuClass = DoneProcessStatus::class;
 
@@ -35,7 +37,11 @@ class CreateProcessStatus extends AbstractProcessStatus
         $this->addMenuClass(CancelStatus::class);
         $this->addMenuClass(ToDoProcess::class);
         $this->addMenuClass(AddGroupContentType::class);
+        $this->addMenuClass(HtmlContentType::class);
 
     }
+
+
+
 
 }

@@ -8,7 +8,7 @@ use Nemundo\Admin\Com\Widget\AbstractAdminWidget;
 use Nemundo\Process\Workflow\Site\WorkflowItemSite;
 use Nemundo\ToDo\Com\ToDoTable;
 use Nemundo\ToDo\Site\ToDoSite;
-use Nemundo\ToDo\Workflow\Form\ToDoForm;
+use Nemundo\ToDo\Workflow\Form\ToDoProcessForm;
 
 
 class ToDoWidget extends AbstractAdminWidget
@@ -24,7 +24,7 @@ class ToDoWidget extends AbstractAdminWidget
     public function getContent()
     {
 
-        $form = new ToDoForm($this);
+        $form = new ToDoProcessForm($this);
         //$form->redirectSite = WorkflowItemSite::$site;
         $form->appendParameter =false;
 

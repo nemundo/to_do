@@ -22,7 +22,7 @@ class DoneProcessStatus extends AbstractProcessStatus
     }
 
 
-    protected function saveData()
+    protected function onCreate()
     {
 
         $update = new ToDoUpdate();
