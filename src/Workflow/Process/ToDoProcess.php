@@ -29,7 +29,7 @@ class ToDoProcess extends AbstractProcess
     protected function loadContentType()
     {
 
-        $this->contentLabel = 'To Do (Aufgabe)';
+        $this->contentLabel = 'To Do';
         $this->contentId = '6925df2d-ee59-49d4-aa8b-c03e0900f589';
         $this->prefixNumber = 'TODO-';
         $this->startNumber = 200;
