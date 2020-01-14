@@ -22,8 +22,8 @@ class CreateProcessStatus extends AbstractProcessStatus
     protected function loadContentType()
     {
 
-        $this->contentLabel = 'Erstellung (ToDo)';
-        $this->contentId = 'a31aa6fa-8905-4d21-bb80-c142c337eb0a';
+        $this->typeLabel = 'Erstellung (ToDo)';
+        $this->typeId = 'a31aa6fa-8905-4d21-bb80-c142c337eb0a';
         $this->formClass = ToDoEditForm::class;
         $this->editable = true;
 
