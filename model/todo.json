@@ -46,7 +46,7 @@
             "table_name": "todo_todo",
             "namespace": "Nemundo\\ToDo\\Data\\ToDo",
             "row_class_name": "",
-            "primary_index": "text_id",
+            "primary_index": "unique_id",
             "is_deleted": false,
             "type": [
                 {

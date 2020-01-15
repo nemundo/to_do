@@ -5,7 +5,9 @@ namespace Nemundo\ToDo\Workflow\Status;
 
 
 use Nemundo\Process\Group\Content\Add\AddGroupContentType;
+use Nemundo\Process\Template\Content\File\FileContentType;
 use Nemundo\Process\Template\Content\Html\HtmlContentType;
+use Nemundo\Process\Template\Content\Text\TextContentType;
 use Nemundo\Process\Template\Status\CancelStatus;
 use Nemundo\Process\Template\Status\CommentProcessStatus;
 use Nemundo\Process\Template\Status\DeadlineChangeProcessStatus;
@@ -29,9 +31,10 @@ class CreateProcessStatus extends AbstractProcessStatus
 
         $this->nextMenuClass = DoneProcessStatus::class;
 
-
+        $this->addMenuClass(FileContentType::class);
+        $this->addMenuClass(TextContentType::class);
         $this->addMenuClass(CommentProcessStatus::class);
-        $this->addMenuClass(DocumentProcessStatus::class);
+        //$this->addMenuClass(DocumentProcessStatus::class);
         $this->addMenuClass(UserAssignmentProcessStatus::class);
         $this->addMenuClass(DeadlineChangeProcessStatus::class);
         $this->addMenuClass(CancelStatus::class);

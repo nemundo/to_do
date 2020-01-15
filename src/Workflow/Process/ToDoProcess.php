@@ -10,8 +10,11 @@ use Nemundo\Process\Workflow\Content\Status\ProcessStatusTrait;
 use Nemundo\ToDo\Content\ToDoContentList;
 use Nemundo\ToDo\Data\ToDo\ToDo;
 use Nemundo\ToDo\Data\ToDo\ToDoReader;
+use Nemundo\ToDo\Parameter\ToDoParameter;
+use Nemundo\ToDo\Site\ToDoSite;
 use Nemundo\ToDo\Workflow\Form\ToDoProcessForm;
 use Nemundo\ToDo\Workflow\Status\CreateProcessStatus;
+use Nemundo\ToDo\Workflow\View\ToDoProcessView;
 use Nemundo\ToDo\Workflow\View\ToDoView;
 use Nemundo\User\Session\UserSession;
 
@@ -19,7 +22,6 @@ class ToDoProcess extends AbstractProcess
 {
 
     use ProcessStatusTrait;
-
 
     /**
      * @var string
@@ -36,7 +38,11 @@ class ToDoProcess extends AbstractProcess
         $this->startContentType = new CreateProcessStatus();
         $this->formClass = ToDoProcessForm::class;
         $this->viewClass = ToDoView::class;
+        $this->processViewClass=ToDoProcessView::class;
         $this->listClass = ToDoContentList::class;
+
+        $this->viewSite = ToDoSite::$site;
+        $this->parameterClass=ToDoParameter::class;
 
     }
 
@@ -45,39 +51,33 @@ class ToDoProcess extends AbstractProcess
     {
 
         $this->workflowSubject = $this->toDo;
-        $this->assignment->setUserIdentification((new UserSession())->userId);
+        //$this->assignment->setUserIdentification((new UserSession())->userId);
 
         $data = new ToDo();
-        $data->id = $this->getDataId();  // $this->dataId;
-        $data->updateOnDuplicate = true;
         $data->toDo = $this->toDo;
-        //$data->userId = (new UserSession())->userId;
-        $data->save();
+        $this->dataId = $data->save();
 
         $this->addSearchText($this->toDo);
 
-        /*
-        $item = new AddGroupContentItem();
-        $item->parentId = $this->dataId;
-        $item->saveItem();*/
-
-
-        $status=new CreateProcessStatus();
-        $status->parentId=$this->dataId;
-        $status->saveType();
-
-
-        $item = new UserAssignmentProcessStatus();
-        $item->parentId = $this->dataId;  //parentId;  //dataId;
-        $item->userId = (new UserSession())->userId;
-        $item->saveType();
 
     }
 
 
+    protected function onFinished()
+    {
+
+        $status = new CreateProcessStatus();
+        $status->parentId = $this->getContentId();
+        $status->saveType();
+
+       /*
+        $item = new UserAssignmentProcessStatus();
+        $item->parentId = $this->getContentId();
+        $item->userId = (new UserSession())->userId;
+        $item->saveType();*/
 
 
-
+    }
 
 
     public function getDataRow()

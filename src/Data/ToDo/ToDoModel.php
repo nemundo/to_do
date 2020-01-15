@@ -26,7 +26,7 @@ $this->tableName = "todo_todo";
 $this->aliasTableName = "todo_todo";
 $this->label = "To Do";
 
-$this->primaryIndex = new \Nemundo\Db\Index\TextIdPrimaryIndex();
+$this->primaryIndex = new \Nemundo\Db\Index\UniqueIdPrimaryIndex();
 
 $this->id = new \Nemundo\Model\Type\Id\IdType($this);
 $this->id->tableName = "todo_todo";

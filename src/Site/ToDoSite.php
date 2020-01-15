@@ -5,24 +5,14 @@ namespace Nemundo\ToDo\Site;
 
 
 use Nemundo\Admin\Com\Table\AdminClickableTable;
-use Nemundo\Com\TableBuilder\TableRow;
-use Nemundo\Db\Sql\Field\CountField;
-use Nemundo\Db\Sql\Field\DistinctField;
-use Nemundo\Db\Sql\Field\Field;
-use Nemundo\Db\Sql\Join\SqlJoinType;
 use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
-use Nemundo\Html\Block\Hr;
-use Nemundo\Model\Join\ModelJoin;
+use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
-use Nemundo\Process\Content\Data\ContentGroup\ContentGroupModel;
-use Nemundo\Process\Content\Data\ContentGroup\ContentGroupReader;
-use Nemundo\Process\Group\Data\GroupUser\GroupUserModel;
-use Nemundo\Process\Group\Data\GroupUser\GroupUserReader;
-use Nemundo\ToDo\Com\ToDoTable;
 use Nemundo\ToDo\Data\ToDo\ToDoReader;
-use Nemundo\ToDo\Page\ToDoPage;
-use Nemundo\User\Type\UserSessionType;
+use Nemundo\ToDo\Parameter\ToDoParameter;
+use Nemundo\ToDo\Workflow\Process\ToDoProcess;
 use Nemundo\Web\Site\AbstractSite;
+use Nemundo\Web\Site\Site;
 
 class ToDoSite extends AbstractSite
 {
@@ -35,7 +25,7 @@ class ToDoSite extends AbstractSite
     protected function loadSite()
     {
 
-        $this->title='To Do';
+        $this->title = 'To Do';
         $this->url = 'todo';
         //$this->menuActive = false;
 
@@ -51,79 +41,48 @@ class ToDoSite extends AbstractSite
 
         $page = (new DefaultTemplateFactory())->getDefaultTemplate();
 
-        // restricted area
+        $layout = new BootstrapTwoColumnLayout($page);
+        $layout->col1->columnWidth = 2;
+        $layout->col2->columnWidth = 10;
 
 
-        /*$reader = new ContentGroupReader();
-        //$reader->filter->andEqual($reader->)
-
-
-       foreach ( $reader->getData() as $contentGroupRow) {
-
-
-       }*/
-
-
-        $table=new AdminClickableTable($page);
+        $table = new AdminClickableTable($layout->col1);
 
         $reader = new ToDoReader();
         $reader->model->loadWorkflow();
         $reader->model->workflow->loadProcess();
-
-        /*$field = new Field($reader);
-        $field->fieldName = 'DISTINCT id';
-        $field->aliasFieldName = 'distinct_id';*/
-
-      $field= new DistinctField($reader);
-      $field->tableName = $reader->model->tableName;
-
-
-        //$reader->addField()
-
-        $contentGroupModel = new ContentGroupModel();
-        $groupUserModel=new GroupUserModel();
-
-        $join=new ModelJoin($reader);
-        //$join->joinType = SqlJoinType::RIGHT_JOIN;
-        $join->type = $reader->model->id;
-        $join->externalModel=$contentGroupModel;
-        $join->externalType = $contentGroupModel->contentId;
-
-        //$reader->addFieldByModel($contentGroupModel);
-
-
-        $join=new ModelJoin($reader);
-        //$join->joinType = SqlJoinType::RIGHT_JOIN;
-        $join->type =$contentGroupModel->groupId;
-        $join->externalModel=$groupUserModel;
-        $join->externalType = $groupUserModel->groupId;
-
-
-//        $reader->filter->andEqual($contentGroupModel->groupId,'780a0094-b408-45ca-801a-4871e3b31fc2');
-        $reader->filter->andEqual($groupUserModel->userId, (new UserSessionType())->userId);
-
         $reader->addOrder($reader->model->workflow->number);
 
         foreach ($reader->getData() as $toDoRow) {
 
-            $row=new BootstrapClickableTableRow($table);
-            $row->addText($toDoRow->workflow->workflowNumber);
-            $row->addText($toDoRow->toDo);
-            $row->addYesNo($toDoRow->done);
+            $row = new BootstrapClickableTableRow($table);
+            $row->addText($toDoRow->workflow->getSubject());
 
-          //  $row->addClickableSite($toDoRow->workflow->getViewSite());
+            $site = clone(ToDoSite::$site);
+            $site->addParameter(new ToDoParameter($toDoRow->id));
+            $row->addClickableSite($site);
 
         }
 
 
-        (new Hr($page));
+        $toDoParameter = new ToDoParameter();
+        if ($toDoParameter->exists()) {
 
-        $table = new ToDoTable($page);
-        $table->showDoneItem = true;
+            $process = new ToDoProcess($toDoParameter->getValue());
+            //$process->getView($layout->col2);
+            $process->getProcessView($layout->col2);
 
+
+        } else {
+
+            $process = new ToDoProcess();
+
+            $form = $process->getForm($layout->col2);
+            $form->redirectSite = new Site();
+
+        }
 
         $page->render();
-
 
     }
 

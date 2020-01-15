@@ -8,8 +8,6 @@ use Nemundo\Core\Debug\Debug;
 use Nemundo\Html\Paragraph\Paragraph;
 use Nemundo\Package\Bootstrap\FormElement\BootstrapTextBox;
 use Nemundo\Process\Workflow\Content\Form\AbstractStatusForm;
-use Nemundo\Process\Workflow\Parameter\WorkflowParameter;
-use Nemundo\ToDo\Data\ToDo\ToDoReader;
 use Nemundo\ToDo\Workflow\Process\ToDoProcess;
 
 class ToDoProcessForm extends AbstractStatusForm
@@ -28,16 +26,18 @@ class ToDoProcessForm extends AbstractStatusForm
         $this->todo->label = 'To Do';
         $this->todo->validation = true;
 
-                $p = new Paragraph($this);
-                $p->content = 'parentid'.$this->parentId;
+        //$p = new Paragraph($this);
+        //$p->content = 'parentid' . $this->parentId;
 
-                $p = new Paragraph($this);
-                $p->content = 'dataid'.$this->dataId;
+
+        //(new Debug())->write($this->dataId);
+
+        //$p = new Paragraph($this);
+        //$p->content = 'dataid' . $this->dataId;
 
         return parent::getContent();
 
     }
-
 
 
     protected function onSubmit()

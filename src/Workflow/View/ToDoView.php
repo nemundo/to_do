@@ -6,7 +6,7 @@ namespace Nemundo\ToDo\Workflow\View;
 
 use Nemundo\Admin\Com\Button\AdminSiteButton;
 use Nemundo\Admin\Com\Title\AdminSubtitle;
-use Nemundo\Process\Content\Item\ContentItem;
+
 use Nemundo\Process\Workflow\Com\Table\BaseWorkflowTable;
 use Nemundo\Process\Content\View\AbstractContentView;
 use Nemundo\ToDo\Workflow\Process\ToDoProcess;
