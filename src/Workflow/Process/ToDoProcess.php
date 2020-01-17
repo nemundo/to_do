@@ -4,6 +4,8 @@
 namespace Nemundo\ToDo\Workflow\Process;
 
 
+use Nemundo\Process\App\Assignment\Content\Group\AssignmentContentType;
+use Nemundo\Process\Template\Content\User\UserContentType;
 use Nemundo\Process\Template\Status\UserAssignmentProcessStatus;
 use Nemundo\Process\Workflow\Content\Process\AbstractProcess;
 use Nemundo\Process\Workflow\Content\Status\ProcessStatusTrait;
@@ -57,18 +59,29 @@ class ToDoProcess extends AbstractProcess
         $data->toDo = $this->toDo;
         $this->dataId = $data->save();
 
-        $this->addSearchText($this->toDo);
+        $status = new CreateProcessStatus();
+        $status->parentId = $this->getContentId();
+        $status->saveType();
+
+        $status = new AssignmentContentType();
+        $status->parentId=$this->getContentId();
+        $status->groupId=(new UserContentType((new UserSession())->userId))->getGroupId();
+        $status->saveType();
 
 
     }
 
 
+    protected function onSearchIndex()
+    {
+        $this->addSearchText($this->toDo);
+
+    }
+
     protected function onFinished()
     {
 
-        $status = new CreateProcessStatus();
-        $status->parentId = $this->getContentId();
-        $status->saveType();
+
 
        /*
         $item = new UserAssignmentProcessStatus();
