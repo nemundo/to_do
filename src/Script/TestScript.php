@@ -9,6 +9,7 @@ use Nemundo\Core\Structure\ForLoop;
 use Nemundo\ToDo\Install\ToDoInstall;
 use Nemundo\ToDo\Install\ToDoUninstall;
 use Nemundo\ToDo\Workflow\Process\ToDoProcess;
+use Nemundo\User\Login\UserLogin;
 
 class TestScript extends AbstractConsoleScript
 {
@@ -29,6 +30,10 @@ class TestScript extends AbstractConsoleScript
         //$model=new ToDoModel();
         //$model->workflowId
 
+        $login = new UserLogin();
+        $login->login = 'qm';
+        $login->passwordVerification=false;
+        $login->loginUser();
 
         $loop = new ForLoop();
         $loop->minNumber = 1;
