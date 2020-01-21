@@ -18,6 +18,7 @@ use Nemundo\Process\Workflow\Com\Layout\WorkflowLayout;
 
 use Nemundo\Process\Workflow\Data\Workflow\WorkflowReader;
 use Nemundo\Process\Workflow\Parameter\StatusParameter;
+use Nemundo\ToDo\Data\ToDo\ToDoReader;
 use Nemundo\ToDo\Workflow\Process\ToDoProcess;
 use Nemundo\Web\Site\Site;
 
@@ -37,12 +38,14 @@ class ToDoProcessView extends AbstractContentView
         $layout = new WorkflowLayout($this);
 
 
-        $workflowReader = new WorkflowReader();
-        $workflowReader->model->loadProcess();
-        $workflowReader->model->loadStatus();
+        $workflowReader = new ToDoReader();  // new WorkflowReader();
+        $workflowReader->model->loadWorkflow();
+        $workflowReader->model->workflow->loadStatus();
+        $workflowReader->model->workflow->loadContent();
+
         $workflowRow = $workflowReader->getRowById($this->dataId);
 
-        $workflowStatus = $workflowRow->status->getContentType();
+        $workflowStatus = $workflowRow->workflow->status->getContentType();
         $formStatus = (new StatusParameter())->getStatus();
 
         //(new Debug())->write($workflowStatus->typeLabel);

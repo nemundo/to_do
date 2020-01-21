@@ -26,7 +26,7 @@ class ToDoView extends AbstractContentView
         $title->content=$todoRow->toDo;
 
         $table = new BaseWorkflowTable($this);
-        $table->workflowId=$this->dataId;
+        $table->workflowId= $todoRow->workflowId;  //  $this->dataId;
         
         //$item = new ContentItem($this->dataId);
        /* $type =new ToDoProcess();

@@ -5,6 +5,7 @@ namespace Nemundo\ToDo\Site;
 
 
 use Nemundo\Admin\Com\Table\AdminClickableTable;
+use Nemundo\Admin\Com\Title\AdminTitle;
 use Nemundo\Dev\App\Factory\DefaultTemplateFactory;
 use Nemundo\Package\Bootstrap\Layout\BootstrapTwoColumnLayout;
 use Nemundo\Package\Bootstrap\Table\BootstrapClickableTableRow;
@@ -37,7 +38,6 @@ class ToDoSite extends AbstractSite
 
     public function loadContent()
     {
-        //(new ToDoPage())->render();
 
         $page = (new DefaultTemplateFactory())->getDefaultTemplate();
 
@@ -50,7 +50,8 @@ class ToDoSite extends AbstractSite
 
         $reader = new ToDoReader();
         $reader->model->loadWorkflow();
-        $reader->model->workflow->loadProcess();
+        $reader->model->workflow->loadContent();
+
         $reader->addOrder($reader->model->workflow->number);
 
         foreach ($reader->getData() as $toDoRow) {
@@ -69,9 +70,13 @@ class ToDoSite extends AbstractSite
         if ($toDoParameter->exists()) {
 
             $process = new ToDoProcess($toDoParameter->getValue());
-            //$process->getView($layout->col2);
-            $process->getProcessView($layout->col2);
 
+            $title = new AdminTitle($layout->col2);
+            $title->content = $process->getSubject();
+
+            $view = $process->getProcessView($layout->col2);
+            $view->redirectSite = clone(ToDoSite::$site);
+            $view->redirectSite->addParameter(new ToDoParameter());
 
         } else {
 

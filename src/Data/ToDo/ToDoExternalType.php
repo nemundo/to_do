@@ -53,7 +53,7 @@ $this->done->label = "Done";
 $this->addType($this->done);
 
 $this->workflowId = new \Nemundo\Model\Type\Id\IdType();
-$this->workflowId->fieldName = "id";
+$this->workflowId->fieldName = "workflow";
 $this->workflowId->tableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->workflowId->aliasFieldName = $this->workflowId->tableName ."_".$this->workflowId->fieldName;
 $this->workflowId->label = "Workflow";
@@ -62,8 +62,8 @@ $this->addType($this->workflowId);
 }
 public function loadWorkflow() {
 if ($this->workflow == null) {
-$this->workflow = new \Nemundo\Process\Workflow\Data\Workflow\WorkflowExternalType(null, $this->parentFieldName . "_id");
-$this->workflow->fieldName = "id";
+$this->workflow = new \Nemundo\Process\Workflow\Data\Workflow\WorkflowExternalType(null, $this->parentFieldName . "_workflow");
+$this->workflow->fieldName = "workflow";
 $this->workflow->tableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->workflow->aliasFieldName = $this->workflow->tableName ."_".$this->workflow->fieldName;
 $this->workflow->label = "Workflow";

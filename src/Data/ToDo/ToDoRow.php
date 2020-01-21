@@ -27,6 +27,11 @@ public $toDo;
 public $done;
 
 /**
+* @var string
+*/
+public $workflowId;
+
+/**
 * @var \Nemundo\Process\Workflow\Row\WorkflowCustomRow
 */
 public $workflow;
@@ -37,6 +42,7 @@ $this->row = $row;
 $this->id = $this->getModelValue($model->id);
 $this->toDo = $this->getModelValue($model->toDo);
 $this->done = boolval($this->getModelValue($model->done));
+$this->workflowId = $this->getModelValue($model->workflowId);
 if ($model->workflow !== null) {
 $this->loadNemundoProcessWorkflowDataWorkflowWorkflowworkflowRow($model->workflow);
 }

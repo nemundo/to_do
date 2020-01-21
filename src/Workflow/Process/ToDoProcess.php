@@ -12,6 +12,7 @@ use Nemundo\Process\Workflow\Content\Status\ProcessStatusTrait;
 use Nemundo\ToDo\Content\ToDoContentList;
 use Nemundo\ToDo\Data\ToDo\ToDo;
 use Nemundo\ToDo\Data\ToDo\ToDoReader;
+use Nemundo\ToDo\Data\ToDo\ToDoUpdate;
 use Nemundo\ToDo\Parameter\ToDoParameter;
 use Nemundo\ToDo\Site\ToDoSite;
 use Nemundo\ToDo\Workflow\Form\ToDoProcessForm;
@@ -19,6 +20,7 @@ use Nemundo\ToDo\Workflow\Status\CreateProcessStatus;
 use Nemundo\ToDo\Workflow\View\ToDoProcessView;
 use Nemundo\ToDo\Workflow\View\ToDoView;
 use Nemundo\User\Session\UserSession;
+use Schleuniger\Content\Process\View\SchleunigerProcessView;
 
 class ToDoProcess extends AbstractProcess
 {
@@ -40,7 +42,9 @@ class ToDoProcess extends AbstractProcess
         $this->startContentType = new CreateProcessStatus();
         $this->formClass = ToDoProcessForm::class;
         $this->viewClass = ToDoView::class;
-        $this->processViewClass=ToDoProcessView::class;
+        //$this->processViewClass=ToDoProcessView::class;
+        $this->processViewClass=SchleunigerProcessView::class;
+
         $this->listClass = ToDoContentList::class;
 
         $this->viewSite = ToDoSite::$site;
@@ -72,16 +76,17 @@ class ToDoProcess extends AbstractProcess
     }
 
 
-    protected function onSearchIndex()
-    {
-        $this->addSearchText($this->toDo);
 
-    }
+
+
 
     protected function onFinished()
     {
 
 
+        $update = new ToDoUpdate();
+        $update->workflowId=$this->workflowId;
+        $update->updateById($this->dataId);
 
        /*
         $item = new UserAssignmentProcessStatus();
@@ -91,6 +96,14 @@ class ToDoProcess extends AbstractProcess
 
 
     }
+
+
+     protected function onSearchIndex()
+     {
+         $this->addSearchText($this->toDo);
+
+     }
+
 
 
     public function getDataRow()

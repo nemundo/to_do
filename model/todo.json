@@ -46,7 +46,7 @@
             "table_name": "todo_todo",
             "namespace": "Nemundo\\ToDo\\Data\\ToDo",
             "row_class_name": "",
-            "primary_index": "unique_id",
+            "primary_index": "auto_increment",
             "is_deleted": false,
             "type": [
                 {
@@ -119,9 +119,18 @@
                     "field_name": "id",
                     "variable_name": "workflow",
                     "allow_null": false,
-                    "is_deleted": false,
+                    "is_deleted": true,
                     "external_model_id": "d9483884-4d0f-4f64-9e98-c558e0159cfe",
                     "external_field_name": "id"
+                },
+                {
+                    "type": "external",
+                    "label": "Workflow",
+                    "field_name": "workflow",
+                    "variable_name": "workflow",
+                    "allow_null": false,
+                    "is_deleted": false,
+                    "external_model_id": "d9483884-4d0f-4f64-9e98-c558e0159cfe"
                 }
             ],
             "index": []

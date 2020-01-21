@@ -48,6 +48,8 @@ class ToDoProcessForm extends AbstractStatusForm
         $process->toDo = $this->todo->getValue();
         $process->saveType();
 
+        //exit;
+
         /*
         if ($this->appendParameter) {
             $this->redirectSite->addParameter(new WorkflowParameter($process->getDataId()));
