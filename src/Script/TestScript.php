@@ -4,6 +4,7 @@
 namespace Nemundo\ToDo\Script;
 
 
+use Nemundo\App\Performance\PerformanceStopwatch;
 use Nemundo\App\Script\Type\AbstractConsoleScript;
 use Nemundo\Core\Structure\ForLoop;
 use Nemundo\Process\Group\Data\Group\GroupReader;
@@ -35,11 +36,14 @@ class TestScript extends AbstractConsoleScript
 
         $loop = new ForLoop();
         $loop->minNumber = 1;
-        $loop->maxNumber = 10;
+        $loop->maxNumber = 1;
         foreach ($loop->getData() as $number) {
 
 
-            (new ToDoTestData())->createTestData(1000);
+            (new ToDoTestData())->createTestData(100);
+
+            (new PerformanceStopwatch())->writeToScreen();
+
 
         }
 
