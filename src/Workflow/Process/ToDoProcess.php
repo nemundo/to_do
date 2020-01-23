@@ -33,6 +33,8 @@ class ToDoProcess extends AbstractProcess
      */
     public $toDo;
 
+    public $groupId;
+
     protected function loadContentType()
     {
 
@@ -60,14 +62,16 @@ class ToDoProcess extends AbstractProcess
         $data->toDo = $this->toDo;
         $this->dataId = $data->save();
 
+        /*
         $status = new CreateProcessStatus();
         $status->parentId = $this->getContentId();
         $status->saveType();
 
         $status = new AssignmentContentType();
         $status->parentId=$this->getContentId();
-        $status->groupId=(new UserContentType((new UserSession())->userId))->getGroupId();
-        $status->saveType();
+        //$status->groupId=(new UserContentType((new UserSession())->userId))->getGroupId();
+        $status->groupId = $this->groupId;
+        $status->saveType();*/
 
     }
 
@@ -91,7 +95,9 @@ class ToDoProcess extends AbstractProcess
 
      protected function onSearchIndex()
      {
-         $this->addSearchText($this->toDo);
+
+         $row = $this->getDataRow();
+         $this->addSearchWord($row->toDo);
 
      }
 
