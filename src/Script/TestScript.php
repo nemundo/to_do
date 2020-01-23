@@ -39,14 +39,8 @@ class TestScript extends AbstractConsoleScript
         foreach ($loop->getData() as $number) {
 
 
-            (new ToDoTestData())->createTestData(100);
+            (new ToDoTestData())->createTestData(1000);
 
-
-
-            /*$process = new ToDoProcess();
-            $process->toDo = 'hello ' . $number;
-          //  $process->groupId =
-            $process->saveType();*/
         }
 
     }

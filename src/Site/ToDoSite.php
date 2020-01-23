@@ -53,6 +53,7 @@ class ToDoSite extends AbstractSite
         $reader->model->workflow->loadContent();
 
         $reader->addOrder($reader->model->workflow->number);
+        $reader->limit = 50;
 
         foreach ($reader->getData() as $toDoRow) {
 
