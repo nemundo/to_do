@@ -11,6 +11,7 @@ use Nemundo\Process\Workflow\Setup\ProcessSetup;
 use Nemundo\Project\Install\AbstractInstall;
 use Nemundo\ToDo\Data\ToDoCollection;
 use Nemundo\ToDo\Script\TestScript;
+use Nemundo\ToDo\Script\ToDoCleanScript;
 use Nemundo\ToDo\Workflow\Process\ToDoProcess;
 
 class ToDoInstall extends AbstractInstall
@@ -24,6 +25,7 @@ class ToDoInstall extends AbstractInstall
 
         $setup = new ScriptSetup();
         $setup->addScript(new TestScript());
+        $setup->addScript(new ToDoCleanScript());
 
         $setup = new ProcessSetup();
         $setup->addProcess(new ToDoProcess());

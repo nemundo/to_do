@@ -39,7 +39,7 @@
             "index": []
         },
         {
-            "template": "default",
+            "template": "workflow_model",
             "model_id": "3721d165-4d11-4d41-a8c1-407cc22aaa77",
             "label": "To Do",
             "class_name": "ToDo",
@@ -129,7 +129,7 @@
                     "field_name": "workflow",
                     "variable_name": "workflow",
                     "allow_null": false,
-                    "is_deleted": false,
+                    "is_deleted": true,
                     "external_model_id": "d9483884-4d0f-4f64-9e98-c558e0159cfe"
                 }
             ],
