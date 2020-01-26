@@ -72,6 +72,16 @@ public $userId;
 public $user;
 
 /**
+* @var \Nemundo\Model\Type\Id\IdType
+*/
+public $contentId;
+
+/**
+* @var \Nemundo\Process\Content\Data\ContentType\ContentTypeExternalType
+*/
+public $content;
+
+/**
 * @var \Nemundo\Model\Type\Text\TextType
 */
 public $toDo;
@@ -122,7 +132,7 @@ $this->subject->label = "Subject";
 $this->addType($this->subject);
 
 $this->workflowClosed = new \Nemundo\Model\Type\Number\YesNoType();
-$this->workflowClosed->fieldName = "workflowClosed";
+$this->workflowClosed->fieldName = "workflow_closed";
 $this->workflowClosed->tableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->workflowClosed->aliasFieldName = $this->workflowClosed->tableName . "_" . $this->workflowClosed->fieldName;
 $this->workflowClosed->label = "Workflow Closed";
@@ -162,6 +172,13 @@ $this->userId->tableName = $this->parentFieldName . "_" . $this->externalTableNa
 $this->userId->aliasFieldName = $this->userId->tableName ."_".$this->userId->fieldName;
 $this->userId->label = "User";
 $this->addType($this->userId);
+
+$this->contentId = new \Nemundo\Model\Type\Id\IdType();
+$this->contentId->fieldName = "content";
+$this->contentId->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->contentId->aliasFieldName = $this->contentId->tableName ."_".$this->contentId->fieldName;
+$this->contentId->label = "Content";
+$this->addType($this->contentId);
 
 $this->toDo = new \Nemundo\Model\Type\Text\TextType();
 $this->toDo->fieldName = "to_do";
@@ -208,6 +225,17 @@ $this->user->tableName = $this->parentFieldName . "_" . $this->externalTableName
 $this->user->aliasFieldName = $this->user->tableName ."_".$this->user->fieldName;
 $this->user->label = "User";
 $this->addType($this->user);
+}
+return $this;
+}
+public function loadContent() {
+if ($this->content == null) {
+$this->content = new \Nemundo\Process\Content\Data\ContentType\ContentTypeExternalType(null, $this->parentFieldName . "_content");
+$this->content->fieldName = "content";
+$this->content->tableName = $this->parentFieldName . "_" . $this->externalTableName;
+$this->content->aliasFieldName = $this->content->tableName ."_".$this->content->fieldName;
+$this->content->label = "Content";
+$this->addType($this->content);
 }
 return $this;
 }

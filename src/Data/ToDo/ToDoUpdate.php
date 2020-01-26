@@ -60,6 +60,11 @@ public $userId;
 /**
 * @var string
 */
+public $contentId;
+
+/**
+* @var string
+*/
 public $toDo;
 
 /**
@@ -86,6 +91,7 @@ $this->typeValueList->setModelValue($this->model->assignmentId, $this->assignmen
 $property = new \Nemundo\Model\Data\Property\DateTime\DateTimeDataProperty($this->model->dateTime, $this->typeValueList);
 $property->setValue($this->dateTime);
 $this->typeValueList->setModelValue($this->model->userId, $this->userId);
+$this->typeValueList->setModelValue($this->model->contentId, $this->contentId);
 $this->typeValueList->setModelValue($this->model->toDo, $this->toDo);
 $this->typeValueList->setModelValue($this->model->done, $this->done);
 parent::update();

@@ -84,6 +84,16 @@ public $user;
 /**
 * @var string
 */
+public $contentId;
+
+/**
+* @var \Nemundo\Process\Content\Row\ContentCustomRow
+*/
+public $content;
+
+/**
+* @var string
+*/
 public $toDo;
 
 /**
@@ -117,6 +127,10 @@ $this->userId = $this->getModelValue($model->userId);
 if ($model->user !== null) {
 $this->loadNemundoUserDataUserUseruserRow($model->user);
 }
+$this->contentId = $this->getModelValue($model->contentId);
+if ($model->content !== null) {
+$this->loadNemundoProcessContentDataContentTypeContentTypecontentRow($model->content);
+}
 $this->toDo = $this->getModelValue($model->toDo);
 $this->done = boolval($this->getModelValue($model->done));
 }
@@ -128,5 +142,8 @@ $this->assignment = new \Nemundo\Process\Group\Data\Group\GroupRow($this->row, $
 }
 private function loadNemundoUserDataUserUseruserRow($model) {
 $this->user = new \Nemundo\User\Data\User\UserRow($this->row, $model);
+}
+private function loadNemundoProcessContentDataContentTypeContentTypecontentRow($model) {
+$this->content = new \Nemundo\Process\Content\Row\ContentCustomRow($this->row, $model);
 }
 }
