@@ -33,7 +33,7 @@ class CreateProcessStatus extends AbstractProcessStatus
 
         $this->addMenuClass(FileContentType::class);
         $this->addMenuClass(TextContentType::class);
-        $this->addMenuClass(CommentProcessStatus::class);
+        //$this->addMenuClass(CommentProcessStatus::class);
         //$this->addMenuClass(DocumentProcessStatus::class);
         $this->addMenuClass(UserAssignmentProcessStatus::class);
         $this->addMenuClass(DeadlineChangeProcessStatus::class);
