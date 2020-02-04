@@ -4,31 +4,24 @@
 namespace Nemundo\ToDo\Workflow\Process;
 
 
-use Nemundo\Process\App\Assignment\Content\Group\AssignmentContentType;
-use Nemundo\Process\Template\Content\User\UserContentType;
-use Nemundo\Process\Template\Status\UserAssignmentProcessStatus;
+use Nemundo\Process\App\Document\Data\Document\Document;
 use Nemundo\Process\Workflow\Content\Process\AbstractProcess;
 use Nemundo\Process\Workflow\Content\Status\ProcessStatusTrait;
-use Nemundo\Process\Workflow\Content\View\ProcessView;
 use Nemundo\ToDo\Content\ToDoContentList;
 use Nemundo\ToDo\Data\ToDo\ToDo;
 use Nemundo\ToDo\Data\ToDo\ToDoDelete;
 use Nemundo\ToDo\Data\ToDo\ToDoModel;
 use Nemundo\ToDo\Data\ToDo\ToDoReader;
-use Nemundo\ToDo\Data\ToDo\ToDoUpdate;
 use Nemundo\ToDo\Parameter\ToDoParameter;
 use Nemundo\ToDo\Site\ToDoSite;
 use Nemundo\ToDo\Workflow\Form\ToDoProcessForm;
 use Nemundo\ToDo\Workflow\Status\CreateProcessStatus;
-use Nemundo\ToDo\Workflow\View\ToDoProcessView;
 use Nemundo\ToDo\Workflow\View\ToDoView;
-use Nemundo\User\Session\UserSession;
-use Nemundo\Workflow\App\ToDo\Content\Type\Status\ToDoErfassungStatus;
 
 class ToDoProcess extends AbstractProcess
 {
 
-    use ProcessStatusTrait;
+    //use ProcessStatusTrait;
 
     /**
      * @var string
@@ -47,12 +40,12 @@ class ToDoProcess extends AbstractProcess
         $this->startContentType = new CreateProcessStatus();
         $this->formClass = ToDoProcessForm::class;
         $this->viewClass = ToDoView::class;
-        $this->processViewClass= ProcessView::class;
+        //$this->processViewClass= ProcessView::class;
         $this->listClass = ToDoContentList::class;
         $this->viewSite = ToDoSite::$site;
-        $this->parameterClass=ToDoParameter::class;
+        $this->parameterClass = ToDoParameter::class;
 
-        $this->workflowModel=new ToDoModel();
+        $this->workflowModel = new ToDoModel();
 
     }
 
@@ -63,18 +56,14 @@ class ToDoProcess extends AbstractProcess
         //$this->workflowSubject = $this->toDo;
 
         $data = new ToDo();
-        $data->active=true;
+        $data->active = true;
         $data->number = $this->getNumber();
-        $data->workflowNumber=$this->getWorkflowNumber();
+        $data->workflowNumber = $this->getWorkflowNumber();
         $data->toDo = $this->toDo;
-        $data->dateTime=$this->dateTime;
+        $data->dateTime = $this->dateTime;
         $this->dataId = $data->save();
 
-        //$this->changeStatus($this->startContentType);
-
-
         $this->changeSubject($this->toDo);
-
 
 
         $status = new CreateProcessStatus();
@@ -109,19 +98,26 @@ class ToDoProcess extends AbstractProcess
     }
 
 
-     protected function onSearchIndex()
-     {
+    protected function onSearchIndex()
+    {
 
-         $row = $this->getDataRow();
-         $this->addSearchWord($row->toDo);
+        $row = $this->getDataRow();
+        $this->addSearchWord($row->toDo);
 
-     }
+        $data = new Document();
+        $data->contentId=$this->getContentId();
+        $data->title= $this->getSubject();
+        $data->text = '';
+        $data->save();
 
 
-     protected function onDelete()
-     {
-         (new ToDoDelete())->deleteById($this->dataId);
-     }
+    }
+
+
+    protected function onDelete()
+    {
+        (new ToDoDelete())->deleteById($this->dataId);
+    }
 
 
     public function getDataRow()
@@ -129,11 +125,9 @@ class ToDoProcess extends AbstractProcess
 
         $reader = new ToDoReader();
         $reader->model->loadStatus();
-        //$reader->model->status->
         $reader->model->loadAssignment();
         $reader->model->assignment->loadGroupType();
-$reader->model->loadUser();
-        //$reader->model->loadWorkflow();
+        $reader->model->loadUser();
         $row = $reader->getRowById($this->dataId);
 
         return $row;
