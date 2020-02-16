@@ -10,7 +10,7 @@ use Nemundo\Process\Template\Content\File\FileContentType;
 use Nemundo\Process\Template\Content\Html\HtmlContentType;
 use Nemundo\Process\Template\Content\LargeText\LargeTextContentType;
 use Nemundo\Process\Template\Content\Text\TextContentType;
-use Nemundo\Process\Template\Status\Cancel\CancelStatus;
+use Nemundo\Process\Template\Status\Cancel\CancelProcessStatus;
 use Nemundo\Process\Template\Status\CommentProcessStatus;
 use Nemundo\Process\Template\Status\DeadlineChangeProcessStatus;
 use Nemundo\Process\Template\Status\DocumentProcessStatus;
@@ -39,7 +39,7 @@ class CreateProcessStatus extends AbstractProcessStatus
         //$this->addMenuClass(DocumentProcessStatus::class);
         //$this->addMenuClass(UserAssignmentProcessStatus::class);
         //$this->addMenuClass(DeadlineChangeProcessStatus::class);
-        $this->addMenuClass(CancelStatus::class);
+        $this->addMenuClass(CancelProcessStatus::class);
         $this->addMenuClass(ToDoProcess::class);
         $this->addMenuClass(AddGroupContentType::class);
         $this->addMenuClass(HtmlContentType::class);
