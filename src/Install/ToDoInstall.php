@@ -33,8 +33,8 @@ class ToDoInstall extends AbstractInstall
         //$setup = new ContentTypeSetup();
         //$setup->addContentType(new ToDoAddContentType());
 
-        $setup=new WikiSetup();
-        $setup->addContentType(new ToDoProcess());
+        //$setup=new WikiSetup();
+        //$setup->addContentType(new ToDoProcess());
 
     }
 
