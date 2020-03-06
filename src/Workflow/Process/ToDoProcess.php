@@ -98,7 +98,7 @@ class ToDoProcess extends AbstractProcess
     }
 
 
-    protected function onSearchIndex()
+    protected function onIndex()
     {
 
         $row = $this->getDataRow();
