@@ -156,7 +156,7 @@ $this->assignmentId = new \Nemundo\Model\Type\Id\IdType();
 $this->assignmentId->fieldName = "assignment";
 $this->assignmentId->tableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->assignmentId->aliasFieldName = $this->assignmentId->tableName ."_".$this->assignmentId->fieldName;
-$this->assignmentId->label = "assignment";
+$this->assignmentId->label = "Assignment";
 $this->addType($this->assignmentId);
 
 $this->dateTime = new \Nemundo\Model\Type\DateTime\DateTimeType();
@@ -212,7 +212,7 @@ $this->assignment = new \Nemundo\Process\Group\Data\Group\GroupExternalType(null
 $this->assignment->fieldName = "assignment";
 $this->assignment->tableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->assignment->aliasFieldName = $this->assignment->tableName ."_".$this->assignment->fieldName;
-$this->assignment->label = "assignment";
+$this->assignment->label = "Assignment";
 $this->addType($this->assignment);
 }
 return $this;
