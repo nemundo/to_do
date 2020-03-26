@@ -42,12 +42,12 @@ public $subject;
 public $workflowClosed;
 
 /**
-* @var string
+* @var int
 */
 public $statusId;
 
 /**
-* @var \Nemundo\Process\Content\Row\ContentTypeCustomRow
+* @var \Nemundo\Process\Content\Row\ContentCustomRow
 */
 public $status;
 
@@ -110,9 +110,9 @@ $this->number = intval($this->getModelValue($model->number));
 $this->workflowNumber = $this->getModelValue($model->workflowNumber);
 $this->subject = $this->getModelValue($model->subject);
 $this->workflowClosed = boolval($this->getModelValue($model->workflowClosed));
-$this->statusId = $this->getModelValue($model->statusId);
+$this->statusId = intval($this->getModelValue($model->statusId));
 if ($model->status !== null) {
-$this->loadNemundoProcessContentDataContentTypeContentTypestatusRow($model->status);
+$this->loadNemundoProcessContentDataContentContentstatusRow($model->status);
 }
 $value = $this->getModelValue($model->deadline);
 if ($value !== "0000-00-00") {
@@ -134,8 +134,8 @@ $this->loadNemundoProcessContentDataContentTypeContentTypecontentRow($model->con
 $this->toDo = $this->getModelValue($model->toDo);
 $this->done = boolval($this->getModelValue($model->done));
 }
-private function loadNemundoProcessContentDataContentTypeContentTypestatusRow($model) {
-$this->status = new \Nemundo\Process\Content\Row\ContentTypeCustomRow($this->row, $model);
+private function loadNemundoProcessContentDataContentContentstatusRow($model) {
+$this->status = new \Nemundo\Process\Content\Row\ContentCustomRow($this->row, $model);
 }
 private function loadNemundoProcessGroupDataGroupGroupassignmentRow($model) {
 $this->assignment = new \Nemundo\Process\Group\Data\Group\GroupRow($this->row, $model);

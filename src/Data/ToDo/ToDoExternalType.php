@@ -37,7 +37,7 @@ public $workflowClosed;
 public $statusId;
 
 /**
-* @var \Nemundo\Process\Content\Data\ContentType\ContentTypeExternalType
+* @var \Nemundo\Process\Content\Data\Content\ContentExternalType
 */
 public $status;
 
@@ -197,7 +197,7 @@ $this->addType($this->done);
 }
 public function loadStatus() {
 if ($this->status == null) {
-$this->status = new \Nemundo\Process\Content\Data\ContentType\ContentTypeExternalType(null, $this->parentFieldName . "_status");
+$this->status = new \Nemundo\Process\Content\Data\Content\ContentExternalType(null, $this->parentFieldName . "_status");
 $this->status->fieldName = "status";
 $this->status->tableName = $this->parentFieldName . "_" . $this->externalTableName;
 $this->status->aliasFieldName = $this->status->tableName ."_".$this->status->fieldName;
