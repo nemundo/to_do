@@ -12,12 +12,17 @@ use Nemundo\ToDo\Workflow\Process\ToDoProcess;
 class ToDoView extends AbstractContentView
 {
 
+    /**
+     * @var ToDoProcess
+     */
+    public $contentType;
+
     public function getContent()
     {
 
-        $todoProcess = new ToDoProcess($this->dataId);
+        //$todoProcess = new ToDoProcess($this->dataId);
 
-        $todoRow = $todoProcess->getDataRow();
+        $todoRow = $this->contentType->getDataRow();
 
 
         $title = new AdminSubtitle($this);

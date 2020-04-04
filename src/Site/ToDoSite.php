@@ -60,34 +60,32 @@ class ToDoSite extends AbstractSite
 
         $table = new AdminClickableTable($layout->col1);
 
-
-
-        $reader = new ToDoReader();
-        $reader->model->loadStatus();
-        $reader->model->loadAssignment();
+        $toDoReader = new ToDoReader();
+        $toDoReader->model->loadStatus();
+        $toDoReader->model->loadAssignment();
 
 
         //$reader->model->loadWorkflow();
         //$reader->model->workflow->loadContent();
 
 //        $reader->addOrder($reader->model->workflow->number);
-        $reader->addOrder($reader->model->number, SortOrder::DESCENDING);
+        $toDoReader->addOrder($toDoReader->model->number, SortOrder::DESCENDING);
 
-        $reader->limit =ProcessConfig::PAGINATION_LIMIT;
+        $toDoReader->limit =ProcessConfig::PAGINATION_LIMIT;
 
 
         $header = new TableHeader($table);
-        $header->addText($reader->model->workflowClosed->label);
-        $header->addText($reader->model->workflowNumber->label);
-        $header->addText($reader->model->status->label);
-        $header->addText($reader->model->assignment->label);
-        $header->addText($reader->model->deadline->label);
+        $header->addText($toDoReader->model->workflowClosed->label);
+        $header->addText($toDoReader->model->workflowNumber->label);
+        $header->addText($toDoReader->model->status->label);
+        $header->addText($toDoReader->model->assignment->label);
+        $header->addText($toDoReader->model->deadline->label);
 
-        $header->addText($reader->model->dateTime->label);
+        $header->addText($toDoReader->model->dateTime->label);
 
 
 
-        foreach ($reader->getData() as $toDoRow) {
+        foreach ($toDoReader->getData() as $toDoRow) {
 
             $row = new BootstrapClickableTableRow($table);
 
@@ -97,7 +95,7 @@ class ToDoSite extends AbstractSite
             $row->addText($toDoRow->workflowNumber.' '. $toDoRow->toDo);
 
 
-            $row->addText($toDoRow->status->contentType);
+            $row->addText($toDoRow->status->contentType->contentType);
 
             $row->addText($toDoRow->assignment->group);
 

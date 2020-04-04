@@ -14,6 +14,11 @@ class ToDoProcessForm extends AbstractStatusForm
 {
 
     /**
+     * @var ToDoProcess
+     */
+    public $contentType;
+
+    /**
      * @var BootstrapTextBox
      */
     private $todo;
@@ -25,6 +30,7 @@ class ToDoProcessForm extends AbstractStatusForm
         $this->todo = new BootstrapTextBox($this);
         $this->todo->label = 'To Do';
         $this->todo->validation = true;
+        $this->todo->autofocus=true;
 
         //$p = new Paragraph($this);
         //$p->content = 'parentid' . $this->parentId;
@@ -43,10 +49,10 @@ class ToDoProcessForm extends AbstractStatusForm
     protected function onSubmit()
     {
 
-        $process = new ToDoProcess();
-        $process->parentId = $this->parentId;
-        $process->toDo = $this->todo->getValue();
-        $process->saveType();
+        //$process = new ToDoProcess();
+        //$process->parentId = $this->parentId;
+        $this->contentType->toDo = $this->todo->getValue();
+        $this->contentType->saveType();
 
         //exit;
 

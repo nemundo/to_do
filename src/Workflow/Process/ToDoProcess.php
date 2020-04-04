@@ -4,9 +4,7 @@
 namespace Nemundo\ToDo\Workflow\Process;
 
 
-use Nemundo\Process\App\Document\Data\Document\Document;
 use Nemundo\Process\Workflow\Content\Process\AbstractProcess;
-use Nemundo\Process\Workflow\Content\Status\ProcessStatusTrait;
 use Nemundo\ToDo\Content\ToDoContentList;
 use Nemundo\ToDo\Data\ToDo\ToDo;
 use Nemundo\ToDo\Data\ToDo\ToDoDelete;
@@ -17,6 +15,9 @@ use Nemundo\ToDo\Site\ToDoSite;
 use Nemundo\ToDo\Workflow\Form\ToDoProcessForm;
 use Nemundo\ToDo\Workflow\Status\CreateProcessStatus;
 use Nemundo\ToDo\Workflow\View\ToDoView;
+use Nemundo\User\Type\UserSessionType;
+use Schleuniger\App\Org\Content\Mitarbeiter\MitarbeiterContentType;
+use Schleuniger\Content\Zuweisung\ZuweisungStatus;
 
 class ToDoProcess extends AbstractProcess
 {
@@ -61,14 +62,11 @@ class ToDoProcess extends AbstractProcess
         $data->workflowNumber = $this->getWorkflowNumber();
         $data->toDo = $this->toDo;
         $data->dateTime = $this->dateTime;
+        //$data->assignmentId = (new MitarbeiterContentType((new UserSessionType())->userId))->getMitarbeiterGroupId();
         $this->dataId = $data->save();
 
-        $this->changeSubject($this->toDo);
+        //$this->changeSubject($this->toDo);
 
-
-        $status = new CreateProcessStatus();
-        $status->parentId = $this->getContentId();
-        $status->saveType();
 
         /*
         $status = new AssignmentContentType();
@@ -82,6 +80,17 @@ class ToDoProcess extends AbstractProcess
 
     protected function onFinished()
     {
+
+        $status = new CreateProcessStatus();
+        $status->parentId = $this->getContentId();
+        $status->saveType();
+
+        //$status = new
+
+
+        //new AssignmentPro ZuweisungStatus()
+
+
 
         /*
         $update = new ToDoUpdate();
@@ -101,14 +110,17 @@ class ToDoProcess extends AbstractProcess
     protected function onIndex()
     {
 
+        parent::onIndex();
+
         $row = $this->getDataRow();
         $this->addSearchWord($row->toDo);
 
+        /*
         $data = new Document();
         $data->contentId=$this->getContentId();
         $data->title= $this->getSubject();
         $data->text = '';
-        $data->save();
+        $data->save();*/
 
 
     }
@@ -120,7 +132,7 @@ class ToDoProcess extends AbstractProcess
     }
 
 
-    public function getDataRow()
+    protected function onDataRow()
     {
 
         $reader = new ToDoReader();
@@ -128,10 +140,9 @@ class ToDoProcess extends AbstractProcess
         $reader->model->loadAssignment();
         $reader->model->assignment->loadGroupType();
         $reader->model->loadUser();
-        $row = $reader->getRowById($this->dataId);
-
-        return $row;
+        $this->dataRow = $reader->getRowById($this->dataId);
 
     }
+
 
 }

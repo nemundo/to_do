@@ -15,7 +15,7 @@ class DoneProcessStatus extends AbstractProcessStatus
     {
         $this->typeLabel = 'Done';
         $this->typeId = '6794c336-a173-4dbb-8f1c-2a1cbfd80eff';
-        $this->formClass = StatusForm::class;
+        //$this->formClass = StatusForm::class;
         $this->closeWorkflow = true;
         $this->changeStatus = true;
 
