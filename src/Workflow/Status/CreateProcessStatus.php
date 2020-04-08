@@ -11,11 +11,13 @@ use Nemundo\Process\Template\Content\Html\HtmlContentType;
 use Nemundo\Process\Template\Content\LargeText\LargeTextContentType;
 use Nemundo\Process\Template\Content\Text\TextContentType;
 use Nemundo\Process\Template\Status\Cancel\CancelProcessStatus;
+use Nemundo\Process\Template\Status\File\FileProcessStatus;
+use Nemundo\Process\Template\Status\SubjectChange\SubjectChangeProcessStatus;
 use Nemundo\Process\Workflow\Content\Status\AbstractProcessStatus;
 use Nemundo\ToDo\Workflow\Form\ToDoEditForm;
 use Nemundo\ToDo\Workflow\Form\ToDoProcessForm;
 use Nemundo\ToDo\Workflow\Process\ToDoProcess;
-use Schleuniger\Content\Zuweisung\ZuweisungStatus;
+use Nemundo\Workflow\App\WorkflowTemplate\Content\Type\FileTemplateStatus;
 
 class CreateProcessStatus extends AbstractProcessStatus
 {
@@ -33,7 +35,11 @@ class CreateProcessStatus extends AbstractProcessStatus
 
         $this->nextMenuClass = DoneProcessStatus::class;
 
-        $this->addMenuClass(FileContentType::class);
+        $this->addMenuClass(FileProcessStatus::class);
+        $this->addMenuClass(SubjectChangeProcessStatus::class);
+
+        //$this->addMenuClass(FileTemplateStatus::class);
+        //$this->addMenuClass(FileContentType::class);
         $this->addMenuClass(TextContentType::class);
         //$this->addMenuClass(CommentProcessStatus::class);
         //$this->addMenuClass(DocumentProcessStatus::class);

@@ -13,9 +13,9 @@ class DoneProcessStatus extends AbstractProcessStatus
 
     protected function loadContentType()
     {
+
         $this->typeLabel = 'Done';
         $this->typeId = '6794c336-a173-4dbb-8f1c-2a1cbfd80eff';
-        //$this->formClass = StatusForm::class;
         $this->closeWorkflow = true;
         $this->changeStatus = true;
 
@@ -30,5 +30,18 @@ class DoneProcessStatus extends AbstractProcessStatus
         $update->updateById($this->parentId);
 
     }
+
+
+    public function getMessage() {
+
+
+        $message = 'Task was done';
+        return $message;
+
+        //parent::getMessage();
+        //$message =
+
+    }
+
 
 }
