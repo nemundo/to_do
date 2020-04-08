@@ -57,7 +57,7 @@ public $status;
 public $deadline;
 
 /**
-* @var string
+* @var int
 */
 public $assignmentId;
 
@@ -118,7 +118,7 @@ $value = $this->getModelValue($model->deadline);
 if ($value !== "0000-00-00") {
 $this->deadline = new \Nemundo\Core\Type\DateTime\Date($this->getModelValue($model->deadline));
 }
-$this->assignmentId = $this->getModelValue($model->assignmentId);
+$this->assignmentId = intval($this->getModelValue($model->assignmentId));
 if ($model->assignment !== null) {
 $this->loadNemundoProcessGroupDataGroupGroupassignmentRow($model->assignment);
 }
