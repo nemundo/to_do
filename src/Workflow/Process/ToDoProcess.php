@@ -4,8 +4,10 @@
 namespace Nemundo\ToDo\Workflow\Process;
 
 
+use Nemundo\Process\App\Notification\Category\TaskCategory;
 use Nemundo\Process\Template\Content\User\UserContentType;
 use Nemundo\Process\Workflow\Content\Process\AbstractProcess;
+use Nemundo\ToDo\Content\App\ToDoApp;
 use Nemundo\ToDo\Content\ToDoContentList;
 use Nemundo\ToDo\Data\ToDo\ToDo;
 use Nemundo\ToDo\Data\ToDo\ToDoDelete;
@@ -75,6 +77,13 @@ class ToDoProcess extends AbstractProcess
         $status->parentId = $this->getContentId();
         $status->saveType();
 
+
+        $groupId = (new UserContentType((new UserSessionType())->userId))->getGroupId();
+        $this->sendGroupNotification($groupId, new TaskCategory());
+
+
+        //$this->sendFavoriteNotification();
+
     }
 
 
@@ -126,5 +135,13 @@ class ToDoProcess extends AbstractProcess
 
     }
 
+
+    protected function getSourceContentId()
+    {
+
+        $contentId = (new ToDoApp())->getContentId();
+        return $contentId;
+        // TODO: Implement getSourceContentId() method.
+    }
 
 }

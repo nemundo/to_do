@@ -9,6 +9,7 @@ use Nemundo\Model\Setup\ModelCollectionSetup;
 use Nemundo\Process\App\Wiki\Setup\WikiSetup;
 use Nemundo\Process\Workflow\Setup\ProcessSetup;
 use Nemundo\Project\Install\AbstractInstall;
+use Nemundo\ToDo\Content\App\ToDoApp;
 use Nemundo\ToDo\Data\ToDoCollection;
 use Nemundo\ToDo\Script\TestScript;
 use Nemundo\ToDo\Script\ToDoCleanScript;
@@ -29,6 +30,9 @@ class ToDoInstall extends AbstractInstall
 
         $setup = new ProcessSetup();
         $setup->addProcess(new ToDoProcess());
+
+        (new ToDoApp())->saveType();
+
 
         //$setup = new ContentTypeSetup();
         //$setup->addContentType(new ToDoAddContentType());
